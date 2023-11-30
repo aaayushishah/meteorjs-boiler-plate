@@ -18,7 +18,6 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-/** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
   const { ready } = useTracker(() => {
     const rdy = Roles.subscription.ready();
@@ -53,11 +52,6 @@ const ProtectedRoute = ({ children }) => {
   return isLogged ? children : <Navigate to="/signin" />;
 };
 
-/**
- * AdminProtectedRoute (see React Router v6 sample)
- * Checks for Meteor login and admin role before routing to the requested page, otherwise goes to signin page.
- * @param {any} { component: Component, ...rest }
- */
 const AdminProtectedRoute = ({ ready, children }) => {
   const isLogged = Meteor.userId() !== null;
   if (!isLogged) {
@@ -70,7 +64,6 @@ const AdminProtectedRoute = ({ ready, children }) => {
   return (isLogged && isAdmin) ? children : <Navigate to="/notauthorized" />;
 };
 
-// Require a component and location to be passed to each ProtectedRoute.
 ProtectedRoute.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
@@ -79,7 +72,6 @@ ProtectedRoute.defaultProps = {
   children: <Landing />,
 };
 
-// Require a component and location to be passed to each AdminProtectedRoute.
 AdminProtectedRoute.propTypes = {
   ready: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),

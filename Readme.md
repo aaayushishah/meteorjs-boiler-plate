@@ -55,7 +55,7 @@
 - Visit: https://guide.meteor.com/writing-atmosphere-packages.html
 
 # App Structure
--lib
+-imports
 -client
 -server
 -public
